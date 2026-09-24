@@ -12,17 +12,19 @@
   >
 
   <style>
+
+    /* =========================
+       COLOURS
+    ========================= */
+
     :root {
       --navy: #003087;
       --navy-dark: #001b4d;
-      --navy-light: #0b4bb3;
-
       --gold: #fcd116;
-      --gold-dark: #d9ad00;
       --orange: #f2a800;
 
       --white: #ffffff;
-      --light: #f4f6fa;
+      --background: #f4f6fa;
       --text: #172033;
       --muted: #667085;
       --border: #dce2eb;
@@ -30,14 +32,15 @@
       --shadow: 0 8px 25px rgba(0, 30, 80, 0.08);
     }
 
+
     /* =========================
-       GENERAL
+       RESET
     ========================= */
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -46,15 +49,20 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--light);
+      background: var(--background);
       color: var(--text);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body.menu-open {
+      overflow: hidden;
     }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
 
     /* =========================
        HEADER
@@ -68,86 +76,275 @@
     .header-main {
       max-width: 1250px;
       margin: auto;
+
       padding: 28px 6%;
+
       display: flex;
       align-items: center;
+
       gap: 24px;
     }
 
     .flag {
       width: 115px;
       height: 77px;
+
       object-fit: cover;
+
       border: 2px solid var(--gold);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
       flex-shrink: 0;
     }
 
     .header-text h1 {
       font-size: clamp(22px, 4vw, 36px);
-      letter-spacing: 0.5px;
+
       line-height: 1.15;
+
+      letter-spacing: 0.5px;
     }
 
     .header-text p {
       margin-top: 6px;
+
       color: #d9e5ff;
+
       font-size: 14px;
+
       letter-spacing: 1px;
+
       text-transform: uppercase;
     }
 
+
     /* =========================
-       NAVIGATION
+       MENU BAR
     ========================= */
 
-    nav {
+    .menu-bar {
       background: white;
+
       border-bottom: 1px solid var(--border);
+
       position: sticky;
+
       top: 0;
+
       z-index: 100;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     }
 
-    .nav-inner {
+    .menu-bar-inner {
       max-width: 1250px;
+
       margin: auto;
-      padding: 0 6%;
+
+      padding: 10px 6%;
 
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
     }
 
-    .nav-logo {
-      font-weight: bold;
-      color: var(--navy);
-      padding: 16px 0;
-    }
+    .menu-button {
+      border: none;
 
-    .nav-links {
-      display: flex;
-      gap: 5px;
-      list-style: none;
-    }
+      background: var(--navy);
 
-    .nav-links a {
-      display: block;
-      padding: 16px 14px;
+      color: white;
+
+      padding: 11px 18px;
+
+      border-radius: 4px;
 
       font-size: 14px;
-      font-weight: 600;
 
-      color: #303b50;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
 
       transition: 0.2s;
     }
 
-    .nav-links a:hover {
-      color: var(--navy);
-      background: #eef3fb;
+    .menu-button:hover {
+      background: #0b4bb3;
     }
+
+    .hamburger {
+      font-size: 20px;
+
+      line-height: 1;
+    }
+
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+
+    .sidebar {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 320px;
+      max-width: 85vw;
+
+      height: 100vh;
+
+      background: white;
+
+      z-index: 1000;
+
+      transform: translateX(-100%);
+
+      transition: transform 0.3s ease;
+
+      box-shadow: 8px 0 30px rgba(0,0,0,0.15);
+
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      background: var(--navy);
+
+      color: white;
+
+      padding: 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+    }
+
+    .sidebar-title {
+      font-size: 20px;
+
+      font-weight: bold;
+    }
+
+    .sidebar-subtitle {
+      color: #cbdcff;
+
+      font-size: 12px;
+
+      margin-top: 3px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.7px;
+    }
+
+    .close-button {
+      background: transparent;
+
+      border: none;
+
+      color: white;
+
+      font-size: 28px;
+
+      cursor: pointer;
+
+      line-height: 1;
+    }
+
+    .menu-section-title {
+      padding: 22px 25px 8px;
+
+      color: var(--navy);
+
+      font-size: 11px;
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1.5px;
+    }
+
+    .sidebar-links {
+      list-style: none;
+    }
+
+    .sidebar-links li {
+      border-bottom: 1px solid #edf0f5;
+    }
+
+    .sidebar-links a {
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+
+      padding: 15px 25px;
+
+      color: #26334b;
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      transition: 0.2s;
+    }
+
+    .sidebar-links a:hover {
+      background: #eef3fb;
+
+      color: var(--navy);
+
+      padding-left: 31px;
+    }
+
+    .menu-icon {
+      width: 25px;
+
+      text-align: center;
+
+      font-size: 18px;
+    }
+
+
+    /* =========================
+       OVERLAY
+    ========================= */
+
+    .overlay {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,0.45);
+
+      z-index: 900;
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition: 0.3s;
+    }
+
+    .overlay.active {
+      opacity: 1;
+
+      visibility: visible;
+    }
+
 
     /* =========================
        HERO
@@ -156,17 +353,18 @@
     .hero {
       background:
         linear-gradient(
-          rgba(0, 35, 100, 0.95),
-          rgba(0, 25, 75, 0.97)
+          rgba(0, 35, 100, 0.96),
+          rgba(0, 25, 75, 0.98)
         );
 
       color: white;
 
-      padding: 90px 6%;
+      padding: 100px 6%;
     }
 
     .hero-inner {
       max-width: 1100px;
+
       margin: auto;
     }
 
@@ -179,17 +377,19 @@
 
       padding-left: 12px;
 
-      font-size: 14px;
+      font-size: 13px;
+
       font-weight: bold;
 
       letter-spacing: 1.5px;
+
       text-transform: uppercase;
 
       margin-bottom: 18px;
     }
 
     .hero h2 {
-      font-size: clamp(38px, 6vw, 68px);
+      font-size: clamp(40px, 6vw, 70px);
 
       line-height: 1.05;
 
@@ -223,15 +423,14 @@
 
       border-radius: 4px;
 
-      font-weight: bold;
-
       font-size: 14px;
 
-      transition: 0.2s;
+      font-weight: bold;
     }
 
     .button-primary {
       background: var(--gold);
+
       color: #172033;
     }
 
@@ -240,13 +439,15 @@
     }
 
     .button-outline {
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255,255,255,0.5);
+
       color: white;
     }
 
     .button-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
     }
+
 
     /* =========================
        MAIN
@@ -257,11 +458,11 @@
 
       margin: auto;
 
-      padding: 65px 6%;
+      padding: 70px 6%;
     }
 
     section {
-      margin-bottom: 75px;
+      margin-bottom: 80px;
     }
 
     .section-heading {
@@ -283,8 +484,6 @@
     .section-heading h2 {
       font-size: 32px;
 
-      color: #172033;
-
       margin-top: 5px;
     }
 
@@ -295,6 +494,7 @@
 
       margin-top: 8px;
     }
+
 
     /* =========================
        ANNOUNCEMENTS
@@ -307,7 +507,7 @@
 
       border-left: 5px solid var(--gold);
 
-      padding: 24px;
+      padding: 25px;
 
       box-shadow: var(--shadow);
 
@@ -315,9 +515,9 @@
 
       justify-content: space-between;
 
-      gap: 20px;
-
       align-items: center;
+
+      gap: 20px;
     }
 
     .announcement h3 {
@@ -333,15 +533,16 @@
     }
 
     .date {
-      font-size: 12px;
-
       color: var(--muted);
+
+      font-size: 12px;
 
       white-space: nowrap;
     }
 
+
     /* =========================
-       CARDS
+       GOVERNMENT
     ========================= */
 
     .cards {
@@ -414,62 +615,52 @@
       font-weight: bold;
     }
 
+
     /* =========================
        PRESIDENT
+       NO BIG BOX
     ========================= */
 
-    .president {
-      background: var(--navy);
+    .president-simple {
+      background: white;
 
-      color: white;
+      border: 1px solid var(--border);
 
-      padding: 40px;
+      border-left: 5px solid var(--navy);
 
-      display: grid;
+      padding: 25px 30px;
 
-      grid-template-columns: 1fr 2fr;
-
-      gap: 40px;
-
-      align-items: center;
+      box-shadow: var(--shadow);
     }
 
-    .president-photo {
-      min-height: 250px;
-
-      background: #071b40;
-
-      display: flex;
-
-      justify-content: center;
-      align-items: center;
-
-      border: 2px solid rgba(252, 209, 22, 0.6);
-
-      font-size: 70px;
-    }
-
-    .president small {
-      color: var(--gold);
+    .president-simple small {
+      color: var(--navy);
 
       text-transform: uppercase;
+
+      font-size: 12px;
 
       font-weight: bold;
 
       letter-spacing: 1px;
     }
 
-    .president h2 {
-      font-size: 34px;
+    .president-simple h3 {
+      font-size: 27px;
 
-      margin: 8px 0 15px;
+      color: var(--navy);
+
+      margin: 4px 0 8px;
     }
 
-    .president p {
-      color: #dbe6fb;
+    .president-simple p {
+      color: var(--muted);
 
-      font-size: 15px;
+      font-size: 14px;
+
+      max-width: 800px;
     }
+
 
     /* =========================
        NATIONAL SYMBOLS
@@ -512,6 +703,7 @@
 
       margin-top: 3px;
     }
+
 
     /* =========================
        QUICK LINKS
@@ -557,6 +749,7 @@
       font-size: 13px;
     }
 
+
     /* =========================
        FOOTER
     ========================= */
@@ -565,8 +758,6 @@
       background: #001634;
 
       color: white;
-
-      border-top: 5px solid var(--gold);
     }
 
     .footer-inner {
@@ -612,7 +803,7 @@
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255,255,255,0.1);
 
       padding: 18px 6%;
 
@@ -623,27 +814,12 @@
       font-size: 12px;
     }
 
+
     /* =========================
        TABLET
     ========================= */
 
     @media (max-width: 850px) {
-
-      .nav-inner {
-        flex-direction: column;
-      }
-
-      .nav-links {
-        width: 100%;
-
-        overflow-x: auto;
-      }
-
-      .nav-links a {
-        padding: 12px 10px;
-
-        white-space: nowrap;
-      }
 
       .cards {
         grid-template-columns: 1fr;
@@ -653,14 +829,16 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .president {
+      .quick-links {
         grid-template-columns: 1fr;
       }
 
       .footer-inner {
         grid-template-columns: 1fr;
       }
+
     }
+
 
     /* =========================
        MOBILE
@@ -674,23 +852,24 @@
 
       .flag {
         width: 80px;
+
         height: 54px;
       }
 
       .header-text h1 {
-        font-size: 21px;
+        font-size: 20px;
       }
 
       .header-text p {
-        font-size: 11px;
+        font-size: 10px;
       }
 
       .hero {
-        padding: 65px 20px;
+        padding: 70px 20px;
       }
 
       main {
-        padding: 45px 20px;
+        padding: 50px 20px;
       }
 
       .announcement {
@@ -699,28 +878,159 @@
         align-items: flex-start;
       }
 
-      .quick-links {
-        grid-template-columns: 1fr;
-      }
-
       .symbols {
         grid-template-columns: 1fr 1fr;
       }
 
-      .president {
-        padding: 25px;
+      .sidebar {
+        width: 300px;
       }
 
-      .footer-inner {
-        padding: 40px 20px;
-      }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- HEADER -->
+
+  <!-- =========================
+       SIDE MENU
+  ========================= -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+
+      <div>
+
+        <div class="sidebar-title">
+          MONTELUNE
+        </div>
+
+        <div class="sidebar-subtitle">
+          Government Portal
+        </div>
+
+      </div>
+
+      <button
+        class="close-button"
+        onclick="closeMenu()"
+        aria-label="Close menu"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="menu-section-title">
+      Main
+    </div>
+
+    <ul class="sidebar-links">
+
+      <li>
+        <a href="#home" onclick="closeMenu()">
+          <span class="menu-icon">⌂</span>
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="#government" onclick="closeMenu()">
+          <span class="menu-icon">🏛</span>
+          Government
+        </a>
+      </li>
+
+      <li>
+        <a href="#president" onclick="closeMenu()">
+          <span class="menu-icon">👤</span>
+          President
+        </a>
+      </li>
+
+      <li>
+        <a href="#congress" onclick="closeMenu()">
+          <span class="menu-icon">📜</span>
+          Congress
+        </a>
+      </li>
+
+      <li>
+        <a href="#constitution" onclick="closeMenu()">
+          <span class="menu-icon">⚖</span>
+          Constitution
+        </a>
+      </li>
+
+    </ul>
+
+
+    <div class="menu-section-title">
+      National Information
+    </div>
+
+    <ul class="sidebar-links">
+
+      <li>
+        <a href="#announcements" onclick="closeMenu()">
+          <span class="menu-icon">📢</span>
+          Announcements
+        </a>
+      </li>
+
+      <li>
+        <a href="#symbols" onclick="closeMenu()">
+          <span class="menu-icon">🇲🇱</span>
+          National Symbols
+        </a>
+      </li>
+
+      <li>
+        <a href="#diplomacy" onclick="closeMenu()">
+          <span class="menu-icon">🌐</span>
+          Diplomacy
+        </a>
+      </li>
+
+    </ul>
+
+
+    <div class="menu-section-title">
+      Other
+    </div>
+
+    <ul class="sidebar-links">
+
+      <li>
+        <a href="#contact" onclick="closeMenu()">
+          <span class="menu-icon">✉</span>
+          Contact Government
+        </a>
+      </li>
+
+    </ul>
+
+  </aside>
+
+
+  <!-- OVERLAY -->
+
+  <div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()"
+  ></div>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
 
   <header>
 
@@ -749,50 +1059,35 @@
   </header>
 
 
-  <!-- NAVIGATION -->
+  <!-- =========================
+       MENU BAR
+  ========================= -->
 
-  <nav>
+  <div class="menu-bar">
 
-    <div class="nav-inner">
+    <div class="menu-bar-inner">
 
-      <div class="nav-logo">
-        MONTELUNE
-      </div>
+      <button
+        class="menu-button"
+        onclick="openMenu()"
+      >
 
-      <ul class="nav-links">
+        <span class="hamburger">
+          ☰
+        </span>
 
-        <li>
-          <a href="#home">Home</a>
-        </li>
+        MENU
 
-        <li>
-          <a href="#government">Government</a>
-        </li>
-
-        <li>
-          <a href="#president">President</a>
-        </li>
-
-        <li>
-          <a href="#announcements">Announcements</a>
-        </li>
-
-        <li>
-          <a href="#symbols">National Symbols</a>
-        </li>
-
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
-
-      </ul>
+      </button>
 
     </div>
 
-  </nav>
+  </div>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
   <section class="hero" id="home">
 
@@ -837,7 +1132,10 @@
 
   <main>
 
-    <!-- ANNOUNCEMENTS -->
+
+    <!-- =========================
+         ANNOUNCEMENTS
+    ========================= -->
 
     <section id="announcements">
 
@@ -856,6 +1154,7 @@
         </p>
 
       </div>
+
 
       <div class="announcement">
 
@@ -881,7 +1180,9 @@
     </section>
 
 
-    <!-- GOVERNMENT -->
+    <!-- =========================
+         GOVERNMENT
+    ========================= -->
 
     <section id="government">
 
@@ -896,14 +1197,15 @@
         </h2>
 
         <p>
-          The institutions responsible for the administration and governance
-          of the Confederate States of Montelune.
+          The institutions responsible for the administration
+          and governance of the Confederate States of Montelune.
         </p>
 
       </div>
 
 
       <div class="cards">
+
 
         <div class="card">
 
@@ -920,14 +1222,17 @@
             and the administration of Montelune.
           </p>
 
-          <a href="#" class="card-link">
+          <a
+            href="#government"
+            class="card-link"
+          >
             View Government →
           </a>
 
         </div>
 
 
-        <div class="card">
+        <div class="card" id="congress">
 
           <div class="card-icon">
             📜
@@ -938,18 +1243,21 @@
           </h3>
 
           <p>
-            Explore the legislative institution of Montelune and
-            its role in creating and approving national legislation.
+            Explore the legislative institution of Montelune
+            and its role in national legislation.
           </p>
 
-          <a href="#" class="card-link">
+          <a
+            href="#congress"
+            class="card-link"
+          >
             View Congress →
           </a>
 
         </div>
 
 
-        <div class="card">
+        <div class="card" id="constitution">
 
           <div class="card-icon">
             ⚖️
@@ -964,18 +1272,24 @@
             governing the Confederate States of Montelune.
           </p>
 
-          <a href="#" class="card-link">
+          <a
+            href="#constitution"
+            class="card-link"
+          >
             Read Constitution →
           </a>
 
         </div>
+
 
       </div>
 
     </section>
 
 
-    <!-- PRESIDENT -->
+    <!-- =========================
+         PRESIDENT
+    ========================= -->
 
     <section id="president">
 
@@ -992,48 +1306,30 @@
       </div>
 
 
-      <div class="president">
+      <div class="president-simple">
 
-        <div class="president-photo">
+        <small>
+          President of Montelune
+        </small>
 
-          🇲🇱
+        <h3>
+          Noah Rogers
+        </h3>
 
-        </div>
-
-
-        <div>
-
-          <small>
-            President of Montelune
-          </small>
-
-          <h2>
-            Noah Rogers
-          </h2>
-
-          <p>
-            His Excellency Noah Rogers serves as President of the
-            Confederate States of Montelune and leads the executive
-            government of the nation.
-          </p>
-
-          <br>
-
-          <a
-            href="#"
-            class="button button-primary"
-          >
-            Presidential Office
-          </a>
-
-        </div>
+        <p>
+          His Excellency Noah Rogers serves as President of
+          the Confederate States of Montelune and leads the
+          executive government of the nation.
+        </p>
 
       </div>
 
     </section>
 
 
-    <!-- NATIONAL SYMBOLS -->
+    <!-- =========================
+         NATIONAL SYMBOLS
+    ========================= -->
 
     <section id="symbols">
 
@@ -1055,6 +1351,7 @@
 
 
       <div class="symbols">
+
 
         <div class="symbol">
 
@@ -1123,12 +1420,59 @@
 
         </div>
 
+
       </div>
 
     </section>
 
 
-    <!-- QUICK LINKS -->
+    <!-- =========================
+         DIPLOMACY
+    ========================= -->
+
+    <section id="diplomacy">
+
+      <div class="section-heading">
+
+        <small>
+          Foreign Affairs
+        </small>
+
+        <h2>
+          Diplomacy
+        </h2>
+
+        <p>
+          Information regarding Montelune's international relations,
+          alliances and diplomatic agreements.
+        </p>
+
+      </div>
+
+
+      <div class="announcement">
+
+        <div>
+
+          <h3>
+            Diplomatic Relations
+          </h3>
+
+          <p>
+            Official treaties, alliances and diplomatic developments
+            will be published through the Government of Montelune.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUICK LINKS
+    ========================= -->
 
     <section>
 
@@ -1147,7 +1491,11 @@
 
       <div class="quick-links">
 
-        <a href="#" class="quick-link">
+
+        <a
+          href="#announcements"
+          class="quick-link"
+        >
 
           <div>
 
@@ -1161,14 +1509,15 @@
 
           </div>
 
-          <b>
-            →
-          </b>
+          <b>→</b>
 
         </a>
 
 
-        <a href="#" class="quick-link">
+        <a
+          href="#congress"
+          class="quick-link"
+        >
 
           <div>
 
@@ -1177,19 +1526,20 @@
             </strong>
 
             <span>
-              Legislation and parliamentary information
+              Legislative information
             </span>
 
           </div>
 
-          <b>
-            →
-          </b>
+          <b>→</b>
 
         </a>
 
 
-        <a href="#" class="quick-link">
+        <a
+          href="#symbols"
+          class="quick-link"
+        >
 
           <div>
 
@@ -1203,14 +1553,15 @@
 
           </div>
 
-          <b>
-            →
-          </b>
+          <b>→</b>
 
         </a>
 
 
-        <a href="#" class="quick-link">
+        <a
+          href="#diplomacy"
+          class="quick-link"
+        >
 
           <div>
 
@@ -1224,24 +1575,27 @@
 
           </div>
 
-          <b>
-            →
-          </b>
+          <b>→</b>
 
         </a>
+
 
       </div>
 
     </section>
 
+
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer id="contact">
 
     <div class="footer-inner">
+
 
       <div>
 
@@ -1279,13 +1633,13 @@
           </li>
 
           <li>
-            <a href="#">
+            <a href="#congress">
               Congress
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="#constitution">
               Constitution
             </a>
           </li>
@@ -1316,13 +1670,13 @@
           </li>
 
           <li>
-            <a href="#">
+            <a href="#diplomacy">
               Diplomacy
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="#contact">
               Contact Government
             </a>
           </li>
@@ -1330,6 +1684,7 @@
         </ul>
 
       </div>
+
 
     </div>
 
@@ -1341,6 +1696,53 @@
     </div>
 
   </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    const sidebar = document.getElementById("sidebar");
+
+    const overlay = document.getElementById("overlay");
+
+
+    function openMenu() {
+
+      sidebar.classList.add("open");
+
+      overlay.classList.add("active");
+
+      document.body.classList.add("menu-open");
+
+    }
+
+
+    function closeMenu() {
+
+      sidebar.classList.remove("open");
+
+      overlay.classList.remove("active");
+
+      document.body.classList.remove("menu-open");
+
+    }
+
+
+    document.addEventListener("keydown", function(event) {
+
+      if (event.key === "Escape") {
+
+        closeMenu();
+
+      }
+
+    });
+
+  </script>
+
 
 </body>
 </html>
