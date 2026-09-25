@@ -1,987 +1,1267 @@
 gooby this gooby that gooby wifi gooby ham 🤣🫱
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confederate States of Montelune</title>
-
-    <style>
-        :root {
-            --blue: #003087;
-            --dark-blue: #001b4d;
-            --gold: #F2A800;
-            --white: #ffffff;
-            --light: #f4f7fb;
-            --text: #172033;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* HEADER */
-
-        header {
-            background: var(--dark-blue);
-            color: white;
-            height: 82px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 35px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.18);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .brand img {
-            width: 58px;
-            height: 42px;
-            object-fit: contain;
-        }
-
-        .brand-text h1 {
-            font-size: 19px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        .brand-text p {
-            font-size: 11px;
-            opacity: 0.75;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        /* MENU BUTTON */
-
-        .menu-button {
-            width: 48px;
-            height: 42px;
-            border: 1px solid rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.2s ease;
-        }
-
-        .menu-button:hover {
-            background: rgba(255,255,255,0.14);
-        }
-
-        .menu-button span,
-        .menu-button span::before,
-        .menu-button span::after {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: white;
-            position: relative;
-        }
-
-        .menu-button span::before,
-        .menu-button span::after {
-            content: "";
-            position: absolute;
-            left: 0;
-        }
-
-        .menu-button span::before {
-            top: -7px;
-        }
-
-        .menu-button span::after {
-            top: 7px;
-        }
-
-        /* SIDE MENU */
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -330px;
-            width: 310px;
-            height: 100vh;
-            background: white;
-            z-index: 2000;
-            box-shadow: 6px 0 25px rgba(0,0,0,0.2);
-            transition: left 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .side-menu.open {
-            left: 0;
-        }
-
-        .side-menu-header {
-            height: 82px;
-            background: var(--dark-blue);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-        }
-
-        .side-menu-header h2 {
-            font-size: 18px;
-        }
-
-        .close-menu {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .side-menu ul {
-            list-style: none;
-            padding: 20px 0;
-        }
-
-        .side-menu li {
-            border-bottom: 1px solid #e8ebf0;
-        }
-
-        .side-menu a {
-            display: block;
-            padding: 17px 25px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--dark-blue);
-            transition: 0.2s ease;
-        }
-
-        .side-menu a:hover {
-            background: #f0f4fa;
-            color: var(--blue);
-            padding-left: 32px;
-        }
-
-        .menu-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            z-index: 1500;
-            display: none;
-        }
-
-        .menu-overlay.show {
-            display: block;
-        }
-
-        /* HERO */
-
-        .hero {
-            background:
-                linear-gradient(rgba(0,27,77,0.94), rgba(0,48,135,0.92));
-            color: white;
-            padding: 100px 25px;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 950px;
-            margin: auto;
-        }
-
-        .hero img {
-            width: 145px;
-            max-width: 80%;
-            margin-bottom: 28px;
-        }
-
-        .hero h2 {
-            font-size: clamp(34px, 6vw, 64px);
-            line-height: 1.05;
-            margin-bottom: 20px;
-            font-weight: 900;
-        }
-
-        .hero p {
-            max-width: 720px;
-            margin: auto;
-            font-size: 17px;
-            opacity: 0.9;
-        }
-
-        .hero-buttons {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .hero-button {
-            padding: 13px 22px;
-            border-radius: 5px;
-            font-weight: 800;
-            font-size: 14px;
-            transition: 0.2s ease;
-        }
-
-        .hero-button.primary {
-            background: var(--gold);
-            color: var(--dark-blue);
-        }
-
-        .hero-button.secondary {
-            border: 1px solid rgba(255,255,255,0.5);
-            color: white;
-        }
-
-        .hero-button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* GENERAL */
-
-        .container {
-            width: min(1150px, 92%);
-            margin: auto;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .section-title h2 {
-            color: var(--dark-blue);
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #647084;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        /* QUICK ACCESS */
-
-        .quick-access {
-            margin-top: -45px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .quick-card {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            border-top: 5px solid var(--gold);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            transition: 0.2s ease;
-        }
-
-        .quick-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .quick-card h3 {
-            color: var(--dark-blue);
-            margin-bottom: 8px;
-        }
-
-        .quick-card p {
-            color: #657083;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .quick-card a {
-            color: var(--blue);
-            font-weight: 800;
-            font-size: 13px;
-        }
-
-        /* PRESIDENT */
-
-        .president-section {
-            background: white;
-        }
-
-        .president-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 45px;
-            align-items: center;
-        }
-
-        .president-photo {
-            background: var(--dark-blue);
-            min-height: 340px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-
-        .president-photo h3 {
-            font-size: 26px;
-        }
-
-        .president-info h2 {
-            font-size: 36px;
-            color: var(--dark-blue);
-            margin-bottom: 8px;
-        }
-
-        .president-info .title {
-            color: var(--gold);
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .president-info p {
-            color: #596579;
-            margin-bottom: 20px;
-        }
-
-        .official-button {
-            display: inline-block;
-            background: var(--blue);
-            color: white;
-            padding: 13px 20px;
-            border-radius: 5px;
-            font-size: 13px;
-            font-weight: 800;
-            transition: 0.2s ease;
-        }
-
-        .official-button:hover {
-            background: var(--dark-blue);
-        }
-
-        /* NATIONAL SYMBOLS */
-
-        .symbols-section {
-            background: #f0f3f8;
-        }
-
-        .symbols-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .symbol-card {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
-        }
-
-        .symbol-card img {
-            width: 120px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 20px;
-        }
-
-        .symbol-card h3 {
-            color: var(--dark-blue);
-            margin-bottom: 8px;
-        }
-
-        .symbol-card p {
-            color: #687386;
-            font-size: 14px;
-        }
-
-        /* CTA */
-
-        .cta {
-            background: var(--dark-blue);
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 35px;
-            margin-bottom: 12px;
-        }
-
-        .cta p {
-            max-width: 650px;
-            margin: auto auto 25px;
-            opacity: 0.8;
-        }
-
-        /* FOOTER */
-
-        footer {
-            background: #000f2b;
-            color: white;
-            padding: 45px 0 25px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 35px;
-        }
-
-        .footer-brand h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .footer-brand p {
-            color: #aab5c9;
-            font-size: 14px;
-            max-width: 450px;
-        }
-
-        .footer-column h3 {
-            color: var(--gold);
-            font-size: 14px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-column a {
-            display: block;
-            color: #b7c0d1;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.12);
-            padding-top: 20px;
-            color: #8995aa;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 850px) {
-            .quick-grid,
-            .symbols-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .president-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            header {
-                padding: 0 18px;
-            }
-
-            .brand-text h1 {
-                font-size: 15px;
-            }
-
-            .brand-text p {
-                font-size: 9px;
-            }
-
-            .hero {
-                padding: 75px 20px;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            .side-menu {
-                width: 280px;
-                left: -300px;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Confederate States of Montelune</title>
+
+<style>
+
+/* =========================
+   COLOURS
+========================= */
+
+:root {
+    --blue: #003087;
+    --dark-blue: #001b4d;
+    --gold: #F2A800;
+    --yellow: #FCD116;
+    --light: #f4f6fa;
+    --white: #ffffff;
+    --text: #172033;
+    --muted: #667085;
+    --border: #dce2eb;
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand img {
+    width: 68px;
+    height: 46px;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+}
+
+.brand-name {
+    color: var(--blue);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   MENU BUTTON
+========================= */
+
+.menu-button {
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background: #0b4bb3;
+}
+
+
+/* =========================
+   SIDE MENU
+========================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 310px;
+    max-width: 85vw;
+    height: 100vh;
+    background: white;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 8px 0 30px rgba(0,0,0,0.18);
+    overflow-y: auto;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    background: var(--blue);
+    color: white;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-title {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.sidebar-subtitle {
+    color: #cbd9f5;
+    font-size: 10px;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.menu-heading {
+    padding: 20px 25px 8px;
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.menu-links {
+    list-style: none;
+}
+
+.menu-links li {
+    border-bottom: 1px solid #edf0f5;
+}
+
+.menu-links a {
+    display: block;
+    padding: 15px 25px;
+    color: #26334b;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.menu-links a:hover {
+    background: #eef3fb;
+    color: var(--blue);
+    padding-left: 32px;
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background: var(--blue);
+    color: white;
+    border-bottom: 5px solid var(--gold);
+}
+
+.hero-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 95px 30px 105px;
+}
+
+.hero-label {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 76px);
+    line-height: 1;
+    margin-top: 15px;
+    max-width: 850px;
+}
+
+.hero p {
+    max-width: 680px;
+    color: #dce7ff;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-top: 25px;
+}
+
+.hero-button {
+    display: inline-block;
+    background: var(--gold);
+    color: #172033;
+    padding: 14px 22px;
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.hero-button:hover {
+    background: #ffc43d;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 75px 30px;
+}
+
+.section {
+    margin-bottom: 85px;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.7px;
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-top: 7px;
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 700px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   QUICK ACCESS
+========================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 30px;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s;
+}
+
+.card:hover {
+    border-color: var(--blue);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,30,80,0.08);
+}
+
+.card h3 {
+    color: var(--blue);
+    font-size: 20px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.card-link {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+
+/* =========================
+   PRESIDENT
+========================= */
+
+.president-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.president-card {
+    background: var(--blue);
+    color: white;
+    padding: 35px;
+    border-left: 5px solid var(--gold);
+}
+
+.president-card small {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.president-card h3 {
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.president-card p {
+    color: #dce7ff;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.president-info {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 35px;
+}
+
+.president-info h3 {
+    color: var(--blue);
+    font-size: 22px;
+}
+
+.president-info p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 12px;
+}
+
+.president-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   NATIONAL IDENTITY
+========================= */
+
+.symbols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.symbol {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 30px;
+    text-align: center;
+}
+
+.symbol-image {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.symbol-image img {
+    max-width: 110px;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.blue-box {
+    width: 100px;
+    height: 70px;
+    background: #003087;
+}
+
+.gold-box {
+    width: 100px;
+    height: 70px;
+    background: #F2A800;
+}
+
+.symbol h3 {
+    color: var(--blue);
+    font-size: 15px;
+}
+
+.symbol p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   NATIONAL COLOURS
+========================= */
+
+.colours {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.colour {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 30px;
+    text-align: center;
+}
+
+.colour-swatch {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+}
+
+.colour-blue {
+    background: #003087;
+}
+
+.colour-yellow {
+    background: #FCD116;
+}
+
+.colour-gold {
+    background: #F2A800;
+}
+
+.colour h3 {
+    color: var(--blue);
+    font-size: 15px;
+}
+
+.colour p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: var(--dark-blue);
+    color: white;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.footer-description {
+    color: #b9c8df;
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #b9c8df;
+    font-size: 13px;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    padding: 16px;
+    color: #91a5c3;
+    font-size: 11px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .president-section {
+        grid-template-columns: 1fr;
+    }
+
+    .symbols {
+        grid-template-columns: 1fr;
+    }
+
+    .colours {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .header-inner {
+        padding: 18px 20px;
+    }
+
+    .brand img {
+        width: 55px;
+        height: 37px;
+    }
+
+    .brand-name {
+        font-size: 13px;
+    }
+
+    .brand-subtitle {
+        font-size: 8px;
+    }
+
+    .hero-inner {
+        padding: 65px 20px 75px;
+    }
+
+    main {
+        padding: 55px 20px;
+    }
+
+    .sidebar {
+        width: 285px;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-    <!-- SIDE MENU -->
 
-    <div class="side-menu" id="sideMenu">
+<!-- =========================
+     SIDE MENU
+========================= -->
 
-        <div class="side-menu-header">
-            <h2>Montelune</h2>
+<aside class="sidebar" id="sidebar">
 
-            <button class="close-menu" onclick="closeMenu()">
-                ×
-            </button>
+    <div class="sidebar-header">
+
+        <div>
+
+            <div class="sidebar-title">
+                MONTELUNE
+            </div>
+
+            <div class="sidebar-subtitle">
+                Official Government Website
+            </div>
+
         </div>
 
-        <ul>
-
-            <li>
-                <a href="./index.html">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="./government.html">
-                    Government
-                </a>
-            </li>
-
-            <li>
-                <a href="./congress.html">
-                    Congress
-                </a>
-            </li>
-
-            <li>
-                <a href="./symbols.html">
-                    National Symbols
-                </a>
-            </li>
-
-        </ul>
+        <button
+            class="close-button"
+            onclick="closeMenu()"
+        >
+            ×
+        </button>
 
     </div>
 
-    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+    <div class="menu-heading">
+        Main
+    </div>
+
+    <ul class="menu-links">
+
+        <li>
+            <a href="./index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="./government.html">
+                Government
+            </a>
+        </li>
+
+        <li>
+            <a href="./congress.html">
+                Congress
+            </a>
+        </li>
+
+    </ul>
 
 
-    <!-- HEADER -->
+    <div class="menu-heading">
+        National Information
+    </div>
 
-    <header>
+    <ul class="menu-links">
 
-        <div class="brand">
+        <li>
+            <a href="./symbols.html">
+                National Symbols
+            </a>
+        </li>
 
-            <img src="./Montelune.png" alt="Flag of Montelune">
+    </ul>
 
-            <div class="brand-text">
+</aside>
 
-                <h1>CONFEDERATE STATES OF MONTELUNE</h1>
 
-                <p>Official Government Portal</p>
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()"
+></div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="header-inner">
+
+
+        <a
+            href="./index.html"
+            class="brand"
+        >
+
+            <img
+                src="Montelune.png"
+                alt="Flag of Montelune"
+            >
+
+            <div>
+
+                <div class="brand-name">
+                    THE CONFEDERATE STATES OF MONTELUNE
+                </div>
+
+                <div class="brand-subtitle">
+                    Official Government Website
+                </div>
 
             </div>
 
-        </div>
+        </a>
 
-        <button class="menu-button" onclick="openMenu()" aria-label="Open menu">
 
-            <span></span>
-
+        <button
+            class="menu-button"
+            onclick="openMenu()"
+        >
+            MENU
         </button>
 
-    </header>
+
+    </div>
+
+</header>
 
 
-    <!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <section class="hero">
+<section class="hero">
 
-        <div class="hero-content">
+    <div class="hero-inner">
 
-            <img src="./Montelune.png" alt="Flag of Montelune">
+        <div class="hero-label">
+            Official Government Website
+        </div>
 
-            <h2>The Confederate States of Montelune</h2>
+        <h1>
+            The Confederate States of Montelune
+        </h1>
 
-            <p>
-                Welcome to the official government portal of the Confederate States of Montelune.
-                Explore the government, Congress, national symbols and institutions of Montelune.
-            </p>
+        <p>
+            Welcome to the official government website
+            of Montelune. Explore the institutions,
+            leadership and national identity of the
+            Confederation.
+        </p>
 
-            <div class="hero-buttons">
+        <a
+            href="./government.html"
+            class="hero-button"
+        >
+            Explore the Government
+        </a>
 
-                <a href="./government.html" class="hero-button primary">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+
+<!-- QUICK ACCESS -->
+
+<section class="section">
+
+    <div class="section-label">
+        Government Portal
+    </div>
+
+    <h2>
+        Explore Montelune
+    </h2>
+
+    <p class="section-description">
+        Access official information about the government
+        and institutions of the Confederate States of Montelune.
+    </p>
+
+
+    <div class="cards">
+
+
+        <a
+            href="./government.html"
+            class="card"
+        >
+
+            <div>
+
+                <h3>
                     Government
-                </a>
+                </h3>
 
-                <a href="./congress.html" class="hero-button secondary">
+                <p>
+                    Learn about the executive government,
+                    administration and institutions of Montelune.
+                </p>
+
+            </div>
+
+            <div class="card-link">
+                VIEW GOVERNMENT →
+            </div>
+
+        </a>
+
+
+        <a
+            href="./president.html"
+            class="card"
+        >
+
+            <div>
+
+                <h3>
+                    President
+                </h3>
+
+                <p>
+                    Learn about the President of the
+                    Confederate States of Montelune.
+                </p>
+
+            </div>
+
+            <div class="card-link">
+                VIEW PRESIDENT →
+            </div>
+
+        </a>
+
+
+        <a
+            href="./congress.html"
+            class="card"
+        >
+
+            <div>
+
+                <h3>
                     Congress
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- QUICK ACCESS -->
-
-    <section class="quick-access">
-
-        <div class="container">
-
-            <div class="quick-grid">
-
-                <div class="quick-card">
-
-                    <h3>Government</h3>
-
-                    <p>
-                        Learn about the structure and leadership of the Confederate States of Montelune.
-                    </p>
-
-                    <a href="./government.html">
-                        VIEW GOVERNMENT →
-                    </a>
-
-                </div>
-
-
-                <div class="quick-card">
-
-                    <h3>President</h3>
-
-                    <p>
-                        Learn about the President of the Confederate States of Montelune.
-                    </p>
-
-                    <a href="./president.html">
-                        VIEW PRESIDENT →
-                    </a>
-
-                </div>
-
-
-                <div class="quick-card">
-
-                    <h3>Congress</h3>
-
-                    <p>
-                        Explore the legislative institution of Montelune and its responsibilities.
-                    </p>
-
-                    <a href="./congress.html">
-                        VIEW CONGRESS →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PRESIDENT -->
-
-    <section class="president-section">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>President of Montelune</h2>
+                </h3>
 
                 <p>
-                    The head of state and chief executive of the Confederate States of Montelune.
+                    Explore the legislative institution
+                    of Montelune and its role in national affairs.
                 </p>
 
             </div>
 
-
-            <div class="president-grid">
-
-                <div class="president-photo">
-
-                    <div>
-
-                        <h3>NOAH ROGERS</h3>
-
-                        <p>
-                            President of the Confederate States of Montelune
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="president-info">
-
-                    <h2>Noah Rogers</h2>
-
-                    <div class="title">
-                        President of Montelune
-                    </div>
-
-                    <p>
-                        Noah Rogers is a British-born micronational politician and noble
-                        who currently holds political offices in the Commonwealth of New Ridge
-                        and the Confederate States of Montelune, as well as a noble title in
-                        Vithuanum Vetus.
-                    </p>
-
-                    <p>
-                        He currently serves as the Vice President of New Ridge since
-                        17 September 2026, although previously holding the office from
-                        6 September 2026 to 8 September 2026, making him the 1st and
-                        3rd Vice President of New Ridge.
-                    </p>
-
-                    <p>
-                        Outside of New Ridge, he serves as the President of the
-                        Confederate States of Montelune, serving since 15 November 2025.
-                    </p>
-
-                    <a href="./president.html" class="official-button">
-                        VISIT THE PRESIDENTIAL PAGE →
-                    </a>
-
-                </div>
-
+            <div class="card-link">
+                VIEW CONGRESS →
             </div>
 
-        </div>
-
-    </section>
+        </a>
 
 
-    <!-- NATIONAL SYMBOLS -->
+    </div>
 
-    <section class="symbols-section">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>National Symbols</h2>
-
-                <p>
-                    Symbols representing the identity and character of Montelune.
-                </p>
-
-            </div>
+</section>
 
 
-            <div class="symbols-grid">
+<!-- PRESIDENT -->
 
-                <div class="symbol-card">
+<section class="section">
 
-                    <img src="./Montelune.png" alt="Flag of Montelune">
+    <div class="section-label">
+        Executive Leadership
+    </div>
 
-                    <h3>National Flag</h3>
+    <h2>
+        The President
+    </h2>
 
-                    <p>
-                        The official flag of the Confederate States of Montelune.
-                    </p>
-
-                </div>
-
-
-                <div class="symbol-card">
-
-                    <h3>National Animal</h3>
-
-                    <p>
-                        The Golden Eagle serves as the national animal of Montelune.
-                    </p>
-
-                </div>
+    <p class="section-description">
+        The President leads the executive government
+        of the Confederate States of Montelune.
+    </p>
 
 
-                <div class="symbol-card">
-
-                    <h3>National Identity</h3>
-
-                    <p>
-                        The national symbols of Montelune represent its history,
-                        institutions and identity.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+    <div class="president-section">
 
 
-    <!-- CTA -->
+        <div class="president-card">
 
-    <section class="cta">
+            <small>
+                President of Montelune
+            </small>
 
-        <div class="container">
-
-            <h2>Explore Montelune</h2>
+            <h3>
+                Noah Rogers
+            </h3>
 
             <p>
-                Access the official government information and institutions of the
-                Confederate States of Montelune.
+                His Excellency Noah Rogers
             </p>
 
-            <a href="./government.html" class="hero-button primary">
-                ENTER GOVERNMENT PORTAL
+        </div>
+
+
+        <div class="president-info">
+
+            <h3>
+                Office of the President
+            </h3>
+
+            <p>
+                The President serves as the head of the
+                executive government and represents the
+                Confederate States of Montelune in official
+                affairs.
+            </p>
+
+            <a
+                href="./president.html"
+                class="president-link"
+            >
+                VISIT THE PRESIDENTIAL PAGE →
             </a>
 
         </div>
 
-    </section>
+
+    </div>
+
+</section>
 
 
-    <!-- FOOTER -->
+<!-- NATIONAL SYMBOLS -->
 
-    <footer>
+<section class="section">
 
-        <div class="container">
+    <div class="section-label">
+        National Identity
+    </div>
 
-            <div class="footer-grid">
+    <h2>
+        National Symbols
+    </h2>
 
-                <div class="footer-brand">
-
-                    <h2>CONFEDERATE STATES OF MONTELUNE</h2>
-
-                    <p>
-                        Official government portal of the Confederate States of Montelune.
-                    </p>
-
-                </div>
-
-
-                <div class="footer-column">
-
-                    <h3>Government</h3>
-
-                    <a href="./government.html">
-                        Government
-                    </a>
-
-                    <a href="./president.html">
-                        President
-                    </a>
-
-                    <a href="./congress.html">
-                        Congress
-                    </a>
-
-                </div>
+    <p class="section-description">
+        Symbols representing the identity and heritage
+        of Montelune.
+    </p>
 
 
-                <div class="footer-column">
+    <div class="symbols">
 
-                    <h3>Information</h3>
 
-                    <a href="./symbols.html">
-                        National Symbols
-                    </a>
+        <div class="symbol">
 
-                    <a href="./index.html">
-                        Home
-                    </a>
+            <div class="symbol-image">
 
-                </div>
+                <img
+                    src="Montelune.png"
+                    alt="Flag of Montelune"
+                >
 
             </div>
 
+            <h3>
+                Flag of Montelune
+            </h3>
 
-            <div class="footer-bottom">
+            <p>
+                National Flag
+            </p>
 
-                © 2026 Confederate States of Montelune. All rights reserved.
+        </div>
 
+
+        <div class="symbol">
+
+            <div class="symbol-image">
+
+                <div class="blue-box"></div>
+
+            </div>
+
+            <h3>
+                Montelune Blue
+            </h3>
+
+            <p>
+                #003087
+            </p>
+
+        </div>
+
+
+        <div class="symbol">
+
+            <div class="symbol-image">
+
+                <div class="gold-box"></div>
+
+            </div>
+
+            <h3>
+                Montelune Gold
+            </h3>
+
+            <p>
+                #F2A800
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- NATIONAL COLOURS -->
+
+<section class="section">
+
+    <div class="section-label">
+        National Identity
+    </div>
+
+    <h2>
+        Montelune Colours
+    </h2>
+
+    <p class="section-description">
+        The official colours of the Confederate States of Montelune.
+    </p>
+
+
+    <div class="colours">
+
+
+        <div class="colour">
+
+            <div class="colour-swatch colour-blue"></div>
+
+            <h3>
+                Montelune Blue
+            </h3>
+
+            <p>
+                #003087
+            </p>
+
+        </div>
+
+
+        <div class="colour">
+
+            <div class="colour-swatch colour-yellow"></div>
+
+            <h3>
+                Montelune Yellow
+            </h3>
+
+            <p>
+                #FCD116
+            </p>
+
+        </div>
+
+
+        <div class="colour">
+
+            <div class="colour-swatch colour-gold"></div>
+
+            <h3>
+                Montelune Gold
+            </h3>
+
+            <p>
+                #F2A800
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+
+        <div>
+
+            <div class="footer-title">
+                THE CONFEDERATE STATES OF MONTELUNE
+            </div>
+
+            <div class="footer-description">
+                Official Government Website
             </div>
 
         </div>
 
-    </footer>
+
+        <div class="footer-links">
+
+            <a href="./index.html">
+                Home
+            </a>
+
+            <a href="./government.html">
+                Government
+            </a>
+
+            <a href="./president.html">
+                President
+            </a>
+
+            <a href="./congress.html">
+                Congress
+            </a>
+
+            <a href="./symbols.html">
+                National Symbols
+            </a>
+
+        </div>
 
 
-    <!-- JAVASCRIPT -->
+    </div>
 
-    <script>
 
-        function openMenu() {
+    <div class="copyright">
+        © 2026 The Confederate States of Montelune
+    </div>
 
-            document.getElementById("sideMenu").classList.add("open");
+</footer>
 
-            document.getElementById("menuOverlay").classList.add("show");
 
-            document.body.style.overflow = "hidden";
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
+<script>
+
+function openMenu() {
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .add("open");
+
+    document
+        .getElementById("overlay")
+        .classList
+        .add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList
+        .remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+            closeMenu();
         }
 
+    }
+);
 
-        function closeMenu() {
+</script>
 
-            document.getElementById("sideMenu").classList.remove("open");
-
-            document.getElementById("menuOverlay").classList.remove("show");
-
-            document.body.style.overflow = "";
-
-        }
-
-
-        document.addEventListener("keydown", function(event) {
-
-            if (event.key === "Escape") {
-
-                closeMenu();
-
-            }
-
-        });
-
-    </script>
 
 </body>
+
 </html>
