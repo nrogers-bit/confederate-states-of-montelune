@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>National Symbols | Confederate States of Montelune</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fa;
+      color: #172033;
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+
+    header {
+      background: #003087;
+      color: white;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      padding: 0 35px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .header-left img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+    }
+
+    .menu-button {
+      margin-left: auto;
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 9px 17px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .menu-button:hover {
+      background: white;
+      color: #003087;
+    }
+
+    /* SIDE MENU */
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background: #003087;
+      color: white;
+      z-index: 2000;
+      padding-top: 25px;
+      transition: left 0.3s ease;
+      box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .side-menu.open {
+      left: 0;
+    }
+
+    .side-menu-header {
+      padding: 0 25px 25px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .side-menu-header h2 {
+      font-size: 21px;
+    }
+
+    .side-menu nav {
+      padding-top: 15px;
+    }
+
+    .side-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .side-menu a:hover {
+      background: rgba(255,255,255,0.12);
+      border-left: 4px solid #F2A800;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 17px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(135deg, #003087, #001b4d);
+      color: white;
+      padding: 75px 25px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 46px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* MAIN */
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 60px 25px;
+    }
+
+    .section {
+      margin-bottom: 65px;
+    }
+
+    .section-label {
+      color: #F2A800;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      color: #003087;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      max-width: 900px;
+      color: #4b5563;
+      margin-bottom: 30px;
+    }
+
+    /* CURRENT SYMBOLS */
+
+    .symbols-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .symbol-card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      border-top: 5px solid #F2A800;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .symbol-label {
+      color: #F2A800;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+
+    .symbol-card h3 {
+      color: #003087;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .symbol-card p {
+      color: #596273;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .symbol-card strong {
+      color: #172033;
+    }
+
+    /* FLAG */
+
+    .flag-card {
+      background: white;
+      padding: 35px;
+      border-radius: 8px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      text-align: center;
+      border-top: 5px solid #003087;
+    }
+
+    .flag-card img {
+      width: min(100%, 650px);
+      max-height: 350px;
+      object-fit: contain;
+      margin-bottom: 25px;
+    }
+
+    .flag-card h3 {
+      color: #003087;
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .flag-card p {
+      max-width: 850px;
+      margin: auto;
+      color: #596273;
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      position: relative;
+      max-width: 950px;
+      margin: 45px auto 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #F2A800;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 15px 40px;
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 27px;
+      width: 18px;
+      height: 18px;
+      background: #003087;
+      border: 4px solid #F2A800;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .timeline-item.left .timeline-dot {
+      right: -9px;
+    }
+
+    .timeline-item.right .timeline-dot {
+      left: -9px;
+    }
+
+    .timeline-card {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .timeline-date {
+      color: #F2A800;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+
+    .timeline-card h3 {
+      color: #003087;
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-card p {
+      color: #596273;
+      font-size: 15px;
+    }
+
+    .timeline-status {
+      display: inline-block;
+      margin-top: 12px;
+      background: #003087;
+      color: white;
+      padding: 4px 9px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* BACK BUTTON */
+
+    .back-box {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-button {
+      display: inline-block;
+      background: #F2A800;
+      color: #003087;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .back-button:hover {
+      background: #003087;
+      color: white;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #001b4d;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+      margin-top: 20px;
+    }
+
+    footer img {
+      width: 45px;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+
+      .symbols-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 35px;
+      }
+
+      header {
+        padding: 0 18px;
+      }
+
+      .header-title {
+        font-size: 16px;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item,
+      .timeline-item.left,
+      .timeline-item.right {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 40px;
+        padding-right: 0;
+      }
+
+      .timeline-item.left .timeline-dot,
+      .timeline-item.right .timeline-dot {
+        left: 1px;
+        right: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDE MENU -->
+
+  <aside class="side-menu" id="sideMenu">
+
+    <button class="close-button" onclick="closeMenu()">×</button>
+
+    <div class="side-menu-header">
+      <h2>Montelune Government</h2>
+    </div>
+
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./government.html">Government</a>
+      <a href="./congress.html">Congress</a>
+      <a href="./national-symbols.html">National Symbols</a>
+    </nav>
+
+  </aside>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="header-left">
+
+      <img
+        src="./Montelune.png"
+        alt="Flag of Montelune"
+      >
+
+      <div class="header-title">
+        CONFEDERATE STATES OF MONTELUNE
+      </div>
+
+    </div>
+
+    <button class="menu-button" onclick="openMenu()">
+      MENU
+    </button>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h1>National Symbols</h1>
+
+    <p>
+      The official national symbols of the Confederate States of Montelune
+    </p>
+
+  </section>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <!-- CURRENT SYMBOLS -->
+
+    <section class="section">
+
+      <div class="section-label">
+        National Identity
+      </div>
+
+      <h2>
+        Current National Symbols
+      </h2>
+
+      <p class="section-intro">
+        The national symbols of the Confederate States of Montelune represent the identity, history, and institutions of the Confederation.
+      </p>
+
+
+      <div class="symbols-grid">
+
+
+        <!-- NATIONAL ANIMAL -->
+
+        <div class="symbol-card">
+
+          <div class="symbol-label">
+            National Animal
+          </div>
+
+          <h3>
+            Golden Eagle
+          </h3>
+
+          <p>
+            The <strong>Golden Eagle</strong> serves as the national animal of the Confederate States of Montelune.
+          </p>
+
+          <p>
+            It represents strength, independence, and national identity.
+          </p>
+
+        </div>
+
+
+        <!-- NATIONAL ANTHEM -->
+
+        <div class="symbol-card">
+
+          <div class="symbol-label">
+            National Anthem
+          </div>
+
+          <h3>
+            Badnerlied
+          </h3>
+
+          <p>
+            <strong>Badnerlied</strong> serves as the national anthem of the Confederate States of Montelune.
+          </p>
+
+          <p>
+            The anthem is associated historically with Baden and is used by Montelune as a national ceremonial symbol.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NATIONAL FLAG -->
+
+    <section class="section">
+
+      <div class="section-label">
+        National Flag
+      </div>
+
+      <h2>
+        Flag of Montelune
+      </h2>
+
+      <div class="flag-card">
+
+        <img
+          src="./Montelune.png"
+          alt="Flag of Montelune"
+        >
+
+        <h3>
+          Flag of the Confederate States of Montelune
+        </h3>
+
+        <p>
+          The national flag serves as the principal visual symbol of the Confederate States of Montelune and is displayed on official government institutions and materials.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- SYMBOL HISTORY -->
+
+    <section class="section">
+
+      <div class="section-label">
+        Historical Record
+      </div>
+
+      <h2>
+        History of the National Symbols
+      </h2>
+
+      <p class="section-intro">
+        This timeline records the adoption and historical use of Montelune's national symbols, including symbols that have since ceased to be in effect.
+      </p>
+
+
+      <div class="timeline">
+
+
+        <!-- ESTABLISHMENT -->
+
+        <div class="timeline-item left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-date">
+              15 November 2025
+            </div>
+
+            <h3>
+              Establishment of Montelune
+            </h3>
+
+            <p>
+              The Confederate States of Montelune is established and its national symbols begin to form part of the identity of the Confederation.
+            </p>
+
+            <span class="timeline-status">
+              Established
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- FLAG -->
+
+        <div class="timeline-item right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-date">
+              15 November 2025
+            </div>
+
+            <h3>
+              National Flag
+            </h3>
+
+            <p>
+              The flag of the Confederate States of Montelune is established as the national flag.
+            </p>
+
+            <span class="timeline-status">
+              Current
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- GOLDEN EAGLE -->
+
+        <div class="timeline-item left">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-date">
+              15 November 2025
+            </div>
+
+            <h3>
+              Golden Eagle
+            </h3>
+
+            <p>
+              The Golden Eagle is established as the national animal of Montelune.
+            </p>
+
+            <span class="timeline-status">
+              Current
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- BADNERLIED -->
+
+        <div class="timeline-item right">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-date">
+              25 September 2026
+            </div>
+
+            <h3>
+              Badnerlied
+            </h3>
+
+            <p>
+              Badnerlied is adopted as the national anthem of the Confederate States of Montelune.
+            </p>
+
+            <span class="timeline-status">
+              Current
+            </span>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- BACK BUTTON -->
+
+    <section class="section">
+
+      <div class="back-box">
+
+        <a href="./government.html" class="back-button">
+          BACK TO GOVERNMENT
+        </a>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <img
+      src="./Montelune.png"
+      alt="Flag of Montelune"
+    >
+
+    <p>
+      © Confederate States of Montelune
+    </p>
+
+    <p>
+      Official Government Portal
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function openMenu() {
+      document.getElementById("sideMenu").classList.add("open");
+    }
+
+    function closeMenu() {
+      document.getElementById("sideMenu").classList.remove("open");
+    }
+
+  </script>
+
+</body>
+</html>
