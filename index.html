@@ -1,18 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Montelunian Empire</title>
+  <title>The Montelunian Empire | Official Government Website</title>
+
   <style>
     :root {
       --blue: #003087;
-      --yellow: #FCD116;
       --gold: #F2A800;
+      --yellow: #FCD116;
+      --background: #f3f5f9;
+      --text: #192337;
+      --muted: #60708a;
+      --border: #d7dfeb;
       --white: #ffffff;
-      --light: #f4f6fa;
-      --text: #172033;
     }
 
     * {
@@ -21,207 +23,346 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--light);
+      background: var(--background);
       color: var(--text);
-      line-height: 1.6;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
     }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 40px, 1146px);
+      margin: 0 auto;
+    }
+
+    /* Header */
 
     header {
       background: var(--white);
-      border-bottom: 4px solid var(--gold);
-      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
     }
 
     .header-inner {
-      max-width: 640px;
-      margin: auto;
+      min-height: 76px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .flag {
-      width: 64px;
-      height: 42px;
-      object-fit: cover;
-      border: 1px solid #ddd;
+      width: 48px;
+      height: 32px;
+      object-fit: contain;
+      border: 1px solid var(--border);
     }
 
-    .site-name {
+    .brand h1 {
       margin: 0;
       color: var(--blue);
-      font-size: 1.2rem;
+      font-size: 18px;
+      font-weight: 800;
       line-height: 1.3;
+      text-transform: uppercase;
     }
 
-    .site-subtitle {
+    .brand p {
       margin: 3px 0 0;
-      font-size: 0.8rem;
-      color: #596579;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    .menu-toggle {
+    .menu-button {
       margin-left: auto;
+      padding: 9px 17px;
       background: var(--blue);
-      color: white;
       border: none;
-      border-radius: 5px;
-      padding: 9px 12px;
-      font-size: 1rem;
+      border-radius: 3px;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
       cursor: pointer;
     }
 
-    .side-menu {
+    /* Navigation */
+
+    .navigation {
       display: none;
-      background: var(--blue);
-      padding: 10px 20px;
+      background: #fff;
+      border-top: 1px solid var(--border);
     }
 
-    .side-menu.open {
+    .navigation.open {
       display: block;
     }
 
-    .side-menu-inner {
-      max-width: 640px;
-      margin: auto;
+    .navigation-inner {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
 
-    .side-menu a {
-      color: white;
+    .navigation a {
+      padding: 8px 12px;
+      color: var(--blue);
       text-decoration: none;
-      padding: 10px 4px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 12px;
+      font-weight: bold;
     }
 
-    .side-menu a:last-child {
-      border-bottom: none;
+    .navigation a:hover {
+      background: var(--background);
     }
+
+    /* Hero */
 
     .hero {
-      background: var(--blue);
+      padding: 56px 0;
+      background: #193783;
+      border-bottom: 3px solid var(--gold);
       color: white;
-      padding: 42px 20px;
-      border-bottom: 6px solid var(--gold);
-    }
-
-    .hero-inner {
-      max-width: 640px;
-      margin: auto;
     }
 
     .eyebrow {
-      color: var(--yellow);
-      font-size: 0.78rem;
-      font-weight: bold;
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .hero h2 {
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 10px 0;
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.25;
     }
 
     .hero p {
-      max-width: 520px;
-      margin-bottom: 0;
+      max-width: 650px;
+      margin: 0;
+      color: #e0e8fa;
+      font-size: 14px;
     }
 
+    /* Main content */
+
     main {
-      max-width: 640px;
-      margin: 24px auto;
-      padding: 0 16px;
+      padding-top: 40px;
+      padding-bottom: 55px;
+    }
+
+    .section {
+      margin-bottom: 38px;
+    }
+
+    .section-heading {
+      margin-bottom: 18px;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 3px;
+      color: var(--blue);
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.4;
+    }
+
+    .section-heading p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .grid.two-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .card {
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 18px;
-      border: 1px solid #e0e5ed;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.04);
+      min-height: 132px;
+      padding: 17px 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
     }
 
-    .card h2 {
+    .card h3 {
+      margin: 0 0 5px;
       color: var(--blue);
-      margin-top: 0;
-      font-size: 1.25rem;
+      font-size: 14px;
     }
 
-    .card p:last-child {
-      margin-bottom: 0;
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
     }
 
-    .states {
+    .card-link {
+      display: block;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+
+    .card-link:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .card-link h3::after {
+      content: " ↗";
+      font-size: 11px;
+    }
+
+    /* Emperor */
+
+    .emperor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 8px;
+    }
+
+    .emperor-panel {
+      min-height: 146px;
+      padding: 18px;
+      background: #193783;
+      border-left: 4px solid var(--gold);
+      color: white;
+    }
+
+    .emperor-panel .eyebrow {
+      margin-bottom: 5px;
+    }
+
+    .emperor-panel h3 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.4;
+    }
+
+    .emperor-panel p {
+      margin: 4px 0 0;
+      color: #e0e8fa;
+      font-size: 11px;
+    }
+
+    .emperor-description {
+      min-height: 146px;
+      padding: 19px;
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .emperor-description h3 {
+      margin: 0 0 6px;
+      color: var(--blue);
+      font-size: 15px;
+    }
+
+    .emperor-description p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* National symbols */
+
+    .flag-preview {
+      display: block;
+      width: 100%;
+      height: 25px;
+      margin-top: 12px;
+      object-fit: contain;
+      object-position: left center;
+      border: 1px solid var(--border);
+    }
+
+    .colours {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      gap: 5px;
+      margin-top: 11px;
     }
 
-    .state {
-      background: #f4f6fa;
-      border-top: 3px solid var(--gold);
-      padding: 12px 8px;
-      border-radius: 4px;
-      text-align: center;
-      font-weight: bold;
-      color: var(--blue);
+    .colour {
+      display: flex;
+      min-height: 65px;
+      align-items: flex-end;
+      padding: 7px;
+      font-size: 9px;
+      font-weight: 800;
     }
 
-    .page-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .page-link {
-      display: block;
-      padding: 13px;
-      background: var(--blue);
+    .colour.blue {
+      background: #003087;
       color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      text-align: center;
     }
 
-    .page-link:hover {
-      background: #17479c;
+    .colour.gold {
+      background: #F2A800;
+      color: white;
     }
+
+    .colour.yellow {
+      background: #FCD116;
+      color: #172033;
+    }
+
+    /* Footer */
 
     footer {
-      margin-top: 32px;
-      background: #101d38;
+      padding: 28px 0;
+      background: #111d37;
       color: white;
-      padding: 24px 20px;
     }
 
     .footer-inner {
-      max-width: 640px;
-      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 22px;
     }
 
-    .footer-title {
+    .footer-brand {
+      font-size: 13px;
       font-weight: bold;
-      color: var(--yellow);
-      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      margin: 4px 0 0;
+      color: #bac6dc;
+      font-size: 11px;
+      font-weight: normal;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 16px;
-      margin-bottom: 18px;
+      gap: 8px 18px;
     }
 
     .footer-links a {
-      color: white;
+      color: #e0e8fa;
+      font-size: 11px;
       text-decoration: none;
-      font-size: 0.9rem;
     }
 
     .footer-links a:hover {
@@ -229,120 +370,264 @@
     }
 
     .copyright {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
       padding-top: 14px;
-      font-size: 0.8rem;
-      color: #d1d8e5;
+      border-top: 1px solid #34415b;
+      color: #bac6dc;
+      font-size: 10px;
     }
 
-    @media (max-width: 420px) {
-      .site-name {
-        font-size: 1rem;
-      }
-
-      .hero h2 {
-        font-size: 1.7rem;
-      }
-
-      .states {
+    @media (max-width: 700px) {
+      .grid {
         grid-template-columns: 1fr;
+      }
+
+      .grid.two-columns,
+      .emperor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 42px 0;
+      }
+
+      .container {
+        width: min(100% - 28px, 1146px);
+      }
+
+      .brand h1 {
+        font-size: 14px;
+      }
+
+      .section-heading h2 {
+        font-size: 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
       }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <div class="header-inner">
-      <img class="flag" src="./Montelune.png" alt="Flag of Montelune">
-      <div>
-        <h1 class="site-name">The Montelunian Empire</h1>
-        <p class="site-subtitle">In God, Montelune Prevails.</p>
+    <div class="container header-inner">
+      <img
+        class="flag"
+        src="./Montelune.png"
+        alt="Flag of Montelune"
+      >
+
+      <div class="brand">
+        <h1>The Montelunian Empire</h1>
+        <p>Official Government Website</p>
       </div>
-      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        onclick="toggleMenu()"
+        aria-expanded="false"
+        aria-controls="navigation"
+      >
+        MENU
+      </button>
     </div>
+
+    <nav class="navigation" id="navigation">
+      <div class="container navigation-inner">
+        <a href="./index.html">Home</a>
+        <a href="./government.html">Imperial Government</a>
+        <a href="./congress.html">Parliament</a>
+        <a href="./national-symbols.html">National Symbols</a>
+        <a href="./timeline.html">Imperial Timeline</a>
+      </div>
+    </nav>
   </header>
 
-  <nav class="side-menu" id="sideMenu" aria-label="Main navigation">
-    <div class="side-menu-inner">
-      <a href="./index.html">Home</a>
-      <a href="./government.html">Imperial Government</a>
-      <a href="./congress.html">Parliament</a>
-      <a href="./national-symbols.html">National Symbols</a>
-      <a href="./timeline.html">Imperial Timeline</a>
-    </div>
-  </nav>
-
   <section class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">The Confederate States of Montelune</div>
-      <h2>Welcome to the Montelunian Empire</h2>
+    <div class="container">
+      <p class="eyebrow">Official Government Portal</p>
+      <h2>The Montelunian Empire</h2>
       <p>
-        The official website of the Montelunian Empire, providing information
-        about the Emperor, Parliament, national symbols and the history of Montelune.
+        The official online portal of the Montelunian Empire, providing
+        information about the Imperial Government, Parliament, the Emperor
+        and national identity.
       </p>
     </div>
   </section>
 
-  <main>
-    <section class="card">
-      <h2>A Message from the Emperor</h2>
-      <p>
-        Welcome to the official website of the Montelunian Empire. This website
-        serves as a central source of information about our institutions, national
-        identity and history.
-      </p>
-      <p><strong>Emperor Shane Torres</strong></p>
-    </section>
+  <main class="container">
 
-    <section class="card">
-      <h2>The Three States</h2>
-      <p>The Empire is organised into three states:</p>
-      <div class="states">
-        <div class="state">Marlsborough</div>
-        <div class="state">Richmond</div>
-        <div class="state">Ashbourne</div>
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Government Portal</p>
+        <h2>Government of Montelune</h2>
+        <p>
+          The Imperial Government is responsible for national leadership,
+          administration and public affairs across the Empire.
+        </p>
+      </div>
+
+      <div class="grid">
+        <a class="card card-link" href="./government.html">
+          <h3>Imperial Government</h3>
+          <p>
+            The Imperial Government administers the affairs of the
+            Montelunian Empire.
+          </p>
+        </a>
+
+        <a class="card card-link" href="./congress.html">
+          <h3>Parliament</h3>
+          <p>
+            Parliament is the legislative institution of the Montelunian
+            Empire, responsible for debating and considering bills.
+          </p>
+        </a>
+
+        <a class="card card-link" href="./government.html">
+          <h3>National Administration</h3>
+          <p>
+            Government administration covers national affairs, public
+            institutions and the continued development of Montelune.
+          </p>
+        </a>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Explore Montelune</h2>
-      <div class="page-links">
-        <a class="page-link" href="./government.html">Government</a>
-        <a class="page-link" href="./congress.html">Parliament</a>
-        <a class="page-link" href="./national-symbols.html">National Symbols</a>
-        <a class="page-link" href="./timeline.html">Imperial Timeline</a>
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Executive Leadership</p>
+        <h2>The Emperor</h2>
+        <p>
+          The Emperor serves as the head of state of the Montelunian Empire
+          and represents its unity and national identity.
+        </p>
+      </div>
+
+      <div class="emperor-grid">
+        <div class="emperor-panel">
+          <p class="eyebrow">Emperor of Montelune</p>
+          <h3>Shane Torres</h3>
+          <p>His Imperial Majesty Shane Torres</p>
+        </div>
+
+        <div class="emperor-description">
+          <h3>The Emperor</h3>
+          <p>
+            The Emperor serves as head of state and represents the
+            Montelunian Empire in official affairs.
+          </p>
+        </div>
       </div>
     </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">National Identity</p>
+        <h2>Symbols of Montelune</h2>
+        <p>
+          The national symbols of Montelune represent the identity and
+          institutions of the Montelunian Empire.
+        </p>
+      </div>
+
+      <div class="grid two-columns">
+        <a class="card card-link" href="./national-symbols.html">
+          <h3>National Flag</h3>
+          <p>The official flag of the Montelunian Empire.</p>
+          <img
+            class="flag-preview"
+            src="./Montelune.png"
+            alt="Flag of Montelune"
+          >
+        </a>
+
+        <a class="card card-link" href="./national-symbols.html">
+          <h3>National Colours</h3>
+          <p>
+            The official colours used throughout the national identity
+            of Montelune.
+          </p>
+
+          <div class="colours">
+            <div class="colour blue">#003087</div>
+            <div class="colour gold">#F2A800</div>
+            <div class="colour yellow">#FCD116</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">History and Records</p>
+        <h2>History of the Empire</h2>
+        <p>
+          Explore the development of Montelune and the major events
+          in its national history.
+        </p>
+      </div>
+
+      <div class="grid">
+        <a class="card card-link" href="./timeline.html">
+          <h3>Imperial Timeline</h3>
+          <p>
+            Discover the key events, milestones and changes in
+            Montelune's history.
+          </p>
+        </a>
+
+        <a class="card card-link" href="./government.html">
+          <h3>State Organisation</h3>
+          <p>
+            Learn about the organisation of the Empire and its
+            three constituent states.
+          </p>
+        </a>
+
+        <a class="card card-link" href="./congress.html">
+          <h3>Legislation</h3>
+          <p>
+            Explore Parliament and the legislative work of the
+            Montelunian Empire.
+          </p>
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <div class="footer-inner">
-      <div class="footer-title">The Montelunian Empire</div>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        The Montelunian Empire
+        <p>In God, Montelune Prevails.</p>
+      </div>
 
-      <div class="footer-links">
+      <nav class="footer-links" aria-label="Footer navigation">
         <a href="./index.html">Home</a>
         <a href="./government.html">Government</a>
         <a href="./congress.html">Parliament</a>
-      </div>
-
-      <div class="footer-title">National Information</div>
-      <div class="footer-links">
         <a href="./national-symbols.html">National Symbols</a>
         <a href="./timeline.html">Imperial Timeline</a>
-      </div>
+      </nav>
 
       <div class="copyright">
-        In God, Montelune Prevails.
+        Official website of the Montelunian Empire.
       </div>
     </div>
   </footer>
 
   <script>
     function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      const button = document.querySelector(".menu-toggle");
-      const isOpen = menu.classList.toggle("open");
+      const navigation = document.getElementById("navigation");
+      const button = document.getElementById("menuButton");
+
+      const isOpen = navigation.classList.toggle("open");
       button.setAttribute("aria-expanded", isOpen);
     }
   </script>
